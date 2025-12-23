@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: hla_db2
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8081:80"
+
+  redis:
+    image: redis:7
+    container_name: redis_cache_v1
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - distance_matrix:/data
+
+
+
+volumes:
+  mysql_data:
+  distance_matrix:
