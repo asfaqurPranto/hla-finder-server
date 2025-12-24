@@ -17,7 +17,7 @@ func TestCity_Distance(t *testing.T) {
 }
 
 func TestGeoCode(t *testing.T){
-	origin:="Pabna"
+	origin:="cumilla"
 	lat,lon,err:=GeoCode(origin)
 	fmt.Println("City : ",origin)
 	fmt.Print("Lat: ",lat," Lon: ",lon," Error:",err)

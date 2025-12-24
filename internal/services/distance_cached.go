@@ -16,7 +16,7 @@ var (
 
 func InitRedis() {
 	rdb = redis.NewClient(&redis.Options{
-		Addr: "localhost:6379",
+		Addr: "redis:6379",
 		// Optional: Password: "", DB: 0
 	})
 	if err := rdb.Ping(ctx).Err(); err != nil {

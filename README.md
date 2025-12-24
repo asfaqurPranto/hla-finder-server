@@ -95,8 +95,21 @@ hla_finder/
 │   ├── models/
 │   ├── db/
 │   ├── middleware/
-├── docker/
-│   └── compose.yaml
+|
+│   
 ├── .env
+|──docker-compose.yml
+|──Dockerfile
 ├── README.md
 ```
+## To Use This
+```
+docker pull asfaqurrahman/hla_finder:latest
+
+docker-compose up
+```
+## Access the app
+
+http://localhost:8080/
+
+PhpMyAdmin: http://localhost:8081/

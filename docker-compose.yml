@@ -1,6 +1,23 @@
 version: "3.9"
 
 services:
+  app:
+    build: .
+    container_name: hla_finder
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - redis
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=hla_db2
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
   mysql:
     image: mysql:8
     container_name: mysql_db
@@ -10,7 +27,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - docker_mysql_data:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -29,12 +46,11 @@ services:
     container_name: redis_cache_v1
     ports:
       - "6379:6379"
-    command: redis-server --appendonly yes
     volumes:
-      - distance_matrix:/data
-
-
+      - docker_distance_matrix:/data
 
 volumes:
-  mysql_data:
-  distance_matrix:
+  docker_mysql_data:
+    external: true
+  docker_distance_matrix:
+    external: true

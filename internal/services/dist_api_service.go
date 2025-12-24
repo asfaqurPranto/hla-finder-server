@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
-	"os"
-	"github.com/joho/godotenv"
+	//"os"
+	//"github.com/joho/godotenv"
 )
 
 type GeopifyResponse struct{
@@ -30,11 +30,12 @@ type GeocodeResponse struct{
 
 func GeoCode(city string) (float64,float64 ,error){
 	
-	err:=godotenv.Load("D:/Files/go_basic/hla_finder/.env")
-	if err!=nil{
-		return 0,0,err
-	}
-	apiKey:=os.Getenv("API_KEY")
+	// err:=godotenv.Load("D:/Files/go_basic/hla_finder/.env")
+	// if err!=nil{
+	// 	return 0,0,err
+	// }
+	// apiKey:=os.Getenv("API_KEY")
+	apiKey:="6763cfbb14e84b3fa4132c4908f1d86c"
 	encoded:=url.QueryEscape(city)
 	url:=fmt.Sprintf("https://api.geoapify.com/v1/geocode/search?text=%s&apiKey=%s", encoded, apiKey)
 
@@ -65,11 +66,12 @@ func City_Distance(origin, destination string ) (int,error){
 
 
 	//if not found in cache
-	err=godotenv.Load("D:/Files/go_basic/hla_finder/.env")
-	if err!=nil{
-		return -1,err
-	}
-	apiKey:=os.Getenv("API_KEY")
+	// err=godotenv.Load("D:/Files/go_basic/hla_finder/.env")
+	// if err!=nil{
+	// 	return -1,err
+	// }
+	// apiKey:=os.Getenv("API_KEY")
+	apiKey:="6763cfbb14e84b3fa4132c4908f1d86c"
 	o_lat,o_lon,err:=GeoCode(origin)
 	if err!=nil{
 		return 10000,err
